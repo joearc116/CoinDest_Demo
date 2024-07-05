@@ -20,10 +20,6 @@ public class Currency {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", nullable = false)
-    private Long id;
-
     @Column(name="code", nullable = false)
     private String code;
 

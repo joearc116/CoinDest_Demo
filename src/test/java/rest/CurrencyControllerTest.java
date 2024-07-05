@@ -58,7 +58,7 @@ public class CurrencyControllerTest {
 
     @Test
     public void testUpdateCurrency() throws Exception {
-        mockMvc.perform(put("/api/currency/1").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put("/api/currency").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"code\": \"USD\", \"name\": \"美金\"}"));
     }
 

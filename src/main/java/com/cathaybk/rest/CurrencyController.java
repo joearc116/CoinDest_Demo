@@ -29,20 +29,22 @@ public class CurrencyController {
         log.info("Request CurrencyDto: {}", currencyDto);
         CurrencyDto result = service.save(currencyDto);
         log.info("Request CurrencyDto: {}", currencyDto);
+
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody CurrencyDto currencyDto) {
-        log.info("Request Id: {}, CurrencyDto: {}", id, currencyDto);
-        CurrencyDto result = service.update(id, currencyDto);
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> update(@RequestBody CurrencyDto currencyDto) {
+        log.info("Request CurrencyDto: {}", currencyDto);
+        CurrencyDto result = service.update(currencyDto);
         log.info("Update  result: {} ", result);
+
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
-        log.info("Delete Currency Id: {}", id);
-        service.delete(id);
+    @DeleteMapping("/{code}")
+    public void delete(@PathVariable String code) {
+        log.info("Delete Currency code: {}", code);
+        service.delete(code);
     }
 }

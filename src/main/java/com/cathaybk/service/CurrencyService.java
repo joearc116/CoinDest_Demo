@@ -44,18 +44,18 @@ public class CurrencyService {
         return result != null? resultDto : null;
     }
 
-    public CurrencyDto update(String id, CurrencyDto currencyDto) {
-        Currency existingCurrency = repository.findById(Long.parseLong(id))
-                .orElseThrow(() -> new RuntimeException("Currency not found with id: " + id));
-        existingCurrency.setCode(currencyDto.getCode());
+    public CurrencyDto update(CurrencyDto currencyDto) {
+        String code = currencyDto.getCode();
+        Currency existingCurrency = repository.findById(code)
+                .orElseThrow(() -> new RuntimeException("Currency not found with code: " + code));
         existingCurrency.setName(currencyDto.getName());
         Currency result = repository.save(existingCurrency);
 
-        return result != null? currencyDto : null;
+        return currencyDto;
     }
 
-    public void delete(String id) {
-        repository.deleteById(Long.parseLong(id));
+    public void delete(String code) {
+        repository.deleteById(code);
     }
 
 }

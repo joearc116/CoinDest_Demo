@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CurrencyRepository extends JpaRepository<Currency, Long> {
+public interface CurrencyRepository extends JpaRepository<Currency, String> {
 
     @Query(value = "select * from CURRENCY where CODE = :code ", nativeQuery = true)
     Currency findByCode(String code);

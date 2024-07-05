@@ -6,6 +6,7 @@ import com.cathaybk.rest.CoinDeskResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,7 +22,8 @@ import java.util.Map;
 public class CoinDeskService {
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private final String coinDeskUrl = "https://api.coindesk.com/v1/bpi/currentprice.json";
+    @Value("${coin-desk.api.url}")
+    private String coinDeskUrl;
 
     @Autowired
     private CurrencyRepository currencyRepository;
@@ -30,7 +32,7 @@ public class CoinDeskService {
         return restTemplate.getForObject(coinDeskUrl, String.class);
     }
 
-    public Map<String, Object> getFormatedCoinDeskData() {
+    public Map<String, Object> getTransformedCoinDeskData() {
         try {
             String response = restTemplate.getForObject(coinDeskUrl, String.class);
             ObjectMapper mapper = new ObjectMapper();

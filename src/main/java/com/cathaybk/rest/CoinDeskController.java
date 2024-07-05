@@ -32,7 +32,7 @@ public class CoinDeskController {
 
     @GetMapping(value = "/transformed")
     public Map<String, Object> getTransformedCoinDeskData() {
-        Map<String, Object> data = coindeskService.getFormatedCoinDeskData();
+        Map<String, Object> data = coindeskService.getTransformedCoinDeskData();
         Map<String, Map<String, String>> currencies = (Map<String, Map<String, String>>) data.get("currencies");
         currencies.forEach((code, details) -> {
             Currency currency = currencyService.findByCode(code);
